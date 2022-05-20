@@ -1,7 +1,7 @@
 import {useUserContext} from 'contexts/UserContext';
 import {useFormik} from 'formik';
 import React, {useCallback} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import * as Yup from 'yup';
 
@@ -29,15 +29,21 @@ export const Login: React.FC = () => {
   });
 
   return (
-    <View style={styles.form}>
-      <Input
-        label="名前"
-        containerStyle={styles.input}
-        autoCapitalize="none"
-        errorMessage={formik.errors.name}
-        onChangeText={formik.handleChange('name')}
-        value={formik.values.name}
-      />
+    <KeyboardAvoidingView
+      behavior={Platform.select({
+        ios: 'padding',
+        android: undefined,
+      } as const)}
+      style={styles.container}>
+      <View style={styles.form}>
+        <Input
+          label="名前"
+          containerStyle={styles.input}
+          autoCapitalize="none"
+          errorMessage={formik.errors.name}
+          onChangeText={formik.handleChange('name')}
+          value={formik.values.name}
+        />
       <Input
         label="パスワード"
         containerStyle={styles.input}
@@ -52,11 +58,15 @@ export const Login: React.FC = () => {
         title="ログインする"
         buttonStyle={styles.button}
       />
-    </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   form: {
     flex: 1,
     alignItems: 'center',
