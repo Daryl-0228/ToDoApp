@@ -1,7 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
+import {KeyboardView} from 'components/basics';
 import {useFormik} from 'formik';
 import React, {useCallback, useEffect} from 'react';
-import {Alert, KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 import {Button, Input, Text} from 'react-native-elements';
 import {TodoService} from 'services';
 import * as Yup from 'yup';
@@ -48,12 +49,7 @@ export const TodoForm: React.FC = () => {
   }, [navigation, formik]);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.select({
-        ios: 'padding',
-        android: undefined,
-      } as const)}
-      style={styles.container}>
+    <KeyboardView>
       <View style={styles.form}>
         <Text h1>ToDo登録</Text>
         <Input
@@ -71,14 +67,11 @@ export const TodoForm: React.FC = () => {
           buttonStyle={styles.addButton}
         />
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   form: {
     flex: 1,
     alignSelf: 'stretch',

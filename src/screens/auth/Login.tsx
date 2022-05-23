@@ -1,7 +1,8 @@
+import {KeyboardView} from 'components/basics';
 import {useUserContext} from 'contexts/UserContext';
 import {useFormik} from 'formik';
 import React, {useCallback} from 'react';
-import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import * as Yup from 'yup';
 
@@ -29,12 +30,7 @@ export const Login: React.FC = () => {
   });
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.select({
-        ios: 'padding',
-        android: undefined,
-      } as const)}
-      style={styles.container}>
+    <KeyboardView>
       <View style={styles.form}>
         <Input
           label="名前"
@@ -59,14 +55,11 @@ export const Login: React.FC = () => {
         buttonStyle={styles.button}
       />
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   form: {
     flex: 1,
     alignItems: 'center',
