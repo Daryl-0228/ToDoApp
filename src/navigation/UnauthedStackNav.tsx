@@ -2,7 +2,7 @@
   import {createStackNavigator} from '@react-navigation/stack';
   import React from 'react';
   import {Button} from 'react-native-elements';
-  import {Welcome, Instructions, Login} from 'screens';
+  import {Welcome, Signup, Login} from 'screens';
 
   const HeaderRight: React.FC = () => {
     const navigation = useNavigation();
@@ -32,8 +32,12 @@
             headerRight: undefined,
           }}
         />
-
-        <nav.Screen name="Instructions" component={Instructions} />
+        <nav.Screen
+          name="Signup" component={Signup}
+          options={{
+            headerTitle: 'ユーザー登録',
+          }}
+        />
       </nav.Navigator>
     );
   };
