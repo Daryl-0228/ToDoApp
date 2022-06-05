@@ -5,13 +5,20 @@ import {Todo} from 'services';
 import {TodoItem} from './TodoItem';
 
 interface Props {
-  todos: Todo[];
+  todos?: Todo[];
+  processingTodos: number[];
   contentContainerStyle?: StyleProp<ViewStyle>;
   toggleTodoCompletion: (id: number) => void;
   removeTodo: (id: number) => void;
 }
 
-export const TodoList: React.FC<Props> = ({todos, contentContainerStyle, toggleTodoCompletion, removeTodo}) => {
+export const TodoList: React.FC<Props> = ({
+ todos,
+ contentContainerStyle,
+ toggleTodoCompletion,
+ removeTodo,
+ processingTodos,
+}) => {
   return (
     <FlatList
       style={styles.list}
@@ -24,6 +31,7 @@ export const TodoList: React.FC<Props> = ({todos, contentContainerStyle, toggleT
           text={todo.text}
           completed={todo.completed}
           toggleTodoCompletion={toggleTodoCompletion}
+          processing={processingTodos.includes(todo.id)}
         />
       )}
       keyExtractor={todo => String(todo.id)}
