@@ -1,6 +1,8 @@
 import React, {useCallback} from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import {CheckBox} from 'react-native-elements';
+import {Button, Text} from 'react-native-elements';
+import {TodoService} from 'services';
 
 interface Props {
   id: number;
@@ -18,6 +20,7 @@ export const TodoItem: React.FC<Props> = ({id, text, completed, toggleTodoComple
       <View style={styles.todo}>
         <CheckBox title={text} checked={completed} containerStyle={styles.checkbox} onPress={onToggle} />
       </View>
+      <Button onPress={() => TodoService.} title="x" />
       {processing && (
         <View style={styles.processing}>
           <ActivityIndicator animating={processing} size="large" color="white" style={styles.indicator} />
