@@ -94,8 +94,7 @@ export const TodoBoard: React.FC = () => {
         containerStyle={styles.iconContainerStyle}
         onPress={() => {
           navigation.navigate('TodoForm');
-        }}
-      />
+        } } tvParallaxProperties={undefined}      />
       {loading && (
         <View style={styles.indicatorContainer}>
           <ActivityIndicator color="red" style={styles.indicator} size="large" />
